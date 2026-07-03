@@ -15,7 +15,7 @@ const (
 	vaultAAD       = "acctpass:vault:v1"
 	defaultMemory  = 64 * 1024
 	defaultTime    = 3
-	defaultThreads = 4
+	defaultThreads = 1
 )
 
 type Argon2idParams struct {

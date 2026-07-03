@@ -1,5 +1,10 @@
 # acctpass
 
+[![CI](https://github.com/Falcn8/acctpass/actions/workflows/ci.yml/badge.svg)](https://github.com/Falcn8/acctpass/actions/workflows/ci.yml)
+![Go version](https://img.shields.io/github/go-mod/go-version/Falcn8/acctpass?logo=go)
+![License](https://img.shields.io/github/license/Falcn8/acctpass)
+![Security: unaudited](https://img.shields.io/badge/security-unaudited-orange)
+
 A tiny offline CLI that generates strong account-specific passwords without storing the passwords themselves.
 
 - No server
@@ -49,6 +54,21 @@ acctpass gen --platform github --email alice@example.com --counter 2
 acctpass info
 ```
 
+## How is this different from a password manager?
+
+`acctpass` is not a full password manager like Bitwarden, 1Password, or KeePass.
+It does not store a vault of generated account passwords, autofill forms, sync
+across devices, share credentials with a team, or help recover lost data.
+
+Instead, it is a small deterministic password generator. Given the same master
+password, encrypted local seed, platform, email, counter, length, and symbol
+setting, it regenerates the same password again.
+
+Use a password manager if you want browser/mobile apps, sync, sharing, secure
+notes, passkeys, recovery workflows, or audited production-grade credential
+storage. Use `acctpass` if you want a tiny offline CLI with no account, no
+server, and no stored generated passwords.
+
 ## Builds and releases
 
 CI runs tests, `go vet`, and builds on Ubuntu, macOS, and Windows. It also runs
@@ -71,6 +91,10 @@ seed, not on hiding the code.
 
 The program does not store generated account passwords. It stores only an
 encrypted random seed in the local vault file.
+
+New vaults use Argon2id with 64 MiB memory, time cost 3, and 1 thread for
+predictable cross-platform resource use. Existing vaults keep using the KDF
+parameters stored in their vault file.
 
 Do not commit your real vault file, master password, generated passwords, or
 account list to GitHub.
