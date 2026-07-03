@@ -1,0 +1,26 @@
+# Build outputs
+bin/
+dist/
+*.exe
+*.test
+*.out
+
+# Coverage and profiling
+coverage.out
+coverage.html
+*.prof
+
+# Local secrets and vault material
+.env
+.env.*
+vault.json
+*.vault
+*.key
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
