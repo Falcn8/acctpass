@@ -25,18 +25,6 @@ same strong password every time
 passwords from your master password plus the platform, email, counter, length,
 and symbol setting you provide. The generated account passwords are not saved.
 
-## Demo
-
-```sh
-acctpass gen --platform google --email you@example.com --print
-acctpass gen --platform google --email you@example.com --print --no-symbols
-acctpass gen --platform google --email you@example.com --print --no-symbols --counter 2
-acctpass gen --platform google --email you@example.com --print --no-symbols --counter 2 --length 12
-```
-
-By default, generated passwords are copied to the clipboard. Use `--print` to
-print one instead.
-
 ## Install
 
 ```sh
