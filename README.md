@@ -1,10 +1,41 @@
 # acctpass
 
-`acctpass` is an offline deterministic account password generator.
+A tiny offline CLI that generates strong account-specific passwords without storing the passwords themselves.
 
-It stores one encrypted local vault seed, then regenerates account passwords
-from your master password plus the platform, email, counter, length, and symbol
-setting you provide.
+- No server
+- No account
+- No cloud sync
+- No stored generated passwords
+- Cross-platform: macOS, Linux, Windows
+- Uses Argon2id + XChaCha20-Poly1305 + HMAC-SHA256
+
+```text
+master password
+      +
+encrypted local seed
+      +
+platform + email + counter
+      ↓
+same strong password every time
+```
+
+![acctpass terminal demo](assets/demo.gif)
+
+`acctpass` stores one encrypted local vault seed, then regenerates account
+passwords from your master password plus the platform, email, counter, length,
+and symbol setting you provide. The generated account passwords are not saved.
+
+## Demo
+
+```sh
+acctpass gen --platform google --email you@example.com --print
+acctpass gen --platform google --email you@example.com --print --no-symbols
+acctpass gen --platform google --email you@example.com --print --no-symbols --counter 2
+acctpass gen --platform google --email you@example.com --print --no-symbols --counter 2 --length 12
+```
+
+By default, generated passwords are copied to the clipboard. Use `--print` to
+print one instead.
 
 ## Install
 
@@ -30,8 +61,19 @@ acctpass gen --platform github --email alice@example.com --counter 2
 acctpass info
 ```
 
-By default, generated passwords are copied to the clipboard. Use `--print` to
-print one instead.
+## Builds and releases
+
+CI runs tests, `go vet`, and builds on Ubuntu, macOS, and Windows. It also runs
+`govulncheck` on Go 1.26.x.
+
+Pushing a `v*` tag builds GitHub Release archives for:
+
+- macOS arm64 and amd64
+- Linux arm64 and amd64
+- Windows amd64
+
+Each release includes SHA-256 checksums so downloads can be verified.
+Release archives include the README, SECURITY policy, and MIT license.
 
 ## Security disclaimer
 
@@ -66,7 +108,6 @@ make vuln
 make build-all
 ```
 
-CI runs tests, `go vet`, builds on Linux/macOS/Windows, and scans with
-`govulncheck` on Go 1.26.x.
+## License
 
-Pushing a `v*` tag builds GitHub Release archives with SHA-256 checksums.
+MIT. See [LICENSE](LICENSE).

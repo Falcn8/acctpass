@@ -82,7 +82,7 @@ jobs:
             fi
 
             GOOS="$goos" GOARCH="$goarch" CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o "$binary" .
-            cp README.md SECURITY.md "$package_dir/"
+            cp README.md SECURITY.md LICENSE "$package_dir/"
 
             if [ "$goos" = "windows" ]; then
               (cd "$build_root" && zip -qr "$repo_root/dist/$name.zip" "$name")
