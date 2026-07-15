@@ -189,6 +189,8 @@ func runGen(cfg cliConfig, args []string) error {
 	counter := fs.Int("counter", 1, "password counter/version")
 	length := fs.Int("length", defaultPasswordLength, "password length")
 	noSymbols := fs.Bool("no-symbols", false, "exclude symbols")
+	allowedSymbols := fs.String("allowed-symbols", "", "use only these supported symbols")
+	excludeSymbols := fs.String("exclude-symbols", "", "exclude these supported symbols")
 	printPassword := fs.Bool("print", false, "print password instead of copying to clipboard")
 	if err := fs.Parse(args); err != nil {
 		return err
@@ -207,6 +209,37 @@ func runGen(cfg cliConfig, args []string) error {
 	}
 	if *length < minPasswordLength {
 		return fmt.Errorf("length must be at least %d", minPasswordLength)
+	}
+	setFlags := make(map[string]bool)
+	fs.Visit(func(flag *flag.Flag) {
+		setFlags[flag.Name] = true
+	})
+	if *noSymbols && (setFlags["allowed-symbols"] || setFlags["exclude-symbols"]) {
+		return fmt.Errorf("--no-symbols cannot be combined with --allowed-symbols or --exclude-symbols")
+	}
+	if setFlags["allowed-symbols"] && setFlags["exclude-symbols"] {
+		return fmt.Errorf("--allowed-symbols and --exclude-symbols cannot be combined")
+	}
+	customSymbols := ""
+	if setFlags["allowed-symbols"] {
+		var err error
+		customSymbols, err = normalizeSymbolSubset(*allowedSymbols)
+		if err != nil {
+			return fmt.Errorf("invalid --allowed-symbols: %w", err)
+		}
+		if customSymbols == "" {
+			return fmt.Errorf("--allowed-symbols must contain at least one supported symbol")
+		}
+	}
+	if setFlags["exclude-symbols"] {
+		var err error
+		customSymbols, err = allowedSymbolsAfterExcluding(*excludeSymbols)
+		if err != nil {
+			return fmt.Errorf("invalid --exclude-symbols: %w", err)
+		}
+		if customSymbols == "" {
+			return fmt.Errorf("--exclude-symbols cannot exclude every supported symbol; use --no-symbols instead")
+		}
 	}
 	if warnings := generatedPasswordWarnings(*length, !*noSymbols); len(warnings) > 0 {
 		fmt.Fprintln(cfg.stderr, "Warning: this generated password may be weak.")
@@ -236,11 +269,12 @@ func runGen(cfg cliConfig, args []string) error {
 	}
 
 	password, err := GeneratePassword(seed, PasswordOptions{
-		Platform: *platform,
-		Email:    *email,
-		Counter:  *counter,
-		Length:   *length,
-		Symbols:  !*noSymbols,
+		Platform:       *platform,
+		Email:          *email,
+		Counter:        *counter,
+		Length:         *length,
+		Symbols:        !*noSymbols,
+		AllowedSymbols: customSymbols,
 	})
 	if err != nil {
 		return err
@@ -304,7 +338,7 @@ func printUsage(w io.Writer) {
 
 Usage:
   acctpass init [--force]
-  acctpass gen --platform <name> --email <email> [--counter <n>] [--length <n>] [--no-symbols] [--print]
+  acctpass gen --platform <name> --email <email> [--counter <n>] [--length <n>] [--no-symbols | --allowed-symbols <symbols> | --exclude-symbols <symbols>] [--print]
   acctpass info
   acctpass help
 
@@ -313,6 +347,8 @@ Examples:
   acctpass gen --platform github --email alice@example.com
   acctpass gen --platform github --email alice@example.com --counter 2 --print
   acctpass gen --platform bank --email alice@example.com --length 32 --no-symbols
+  acctpass gen --platform legacy --email alice@example.com --allowed-symbols '!@#'
+  acctpass gen --platform forum --email alice@example.com --exclude-symbols '[]{}'
 
 Defaults:
   counter = 1

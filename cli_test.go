@@ -213,6 +213,65 @@ func TestGeneratedPasswordWarningCases(t *testing.T) {
 	}
 }
 
+func TestCLICustomSymbolFlags(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "vault.json")
+	vault, err := newVaultWithSeed([]byte("master"), testSeed(), fastKDFParams(), time.Unix(0, 0).UTC())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := SaveVault(path, vault); err != nil {
+		t.Fatal(err)
+	}
+
+	testCases := []struct {
+		name      string
+		flag      string
+		value     string
+		forbidden string
+	}{
+		{name: "allowed", flag: "--allowed-symbols", value: "!@", forbidden: "#$%^&*()-_=+[]{}?"},
+		{name: "excluded", flag: "--exclude-symbols", value: "[]{}", forbidden: "[]{}"},
+	}
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			stdout := &bytes.Buffer{}
+			cfg := testCLI("gen", "--platform", "github", "--email", "alice@example.com", tc.flag, tc.value, "--print")
+			cfg.stdout = stdout
+			cfg.vaultPathFunc = func() (string, error) { return path, nil }
+			if err := runCLI(cfg); err != nil {
+				t.Fatal(err)
+			}
+			password := strings.TrimSpace(stdout.String())
+			if strings.ContainsAny(password, tc.forbidden) {
+				t.Fatalf("password %q contains a prohibited symbol from %q", password, tc.forbidden)
+			}
+		})
+	}
+}
+
+func TestCLIRejectsConflictingOrInvalidSymbolFlags(t *testing.T) {
+	testCases := []struct {
+		name    string
+		args    []string
+		wantErr string
+	}{
+		{name: "allowed and excluded", args: []string{"--allowed-symbols", "!", "--exclude-symbols", "@"}, wantErr: "cannot be combined"},
+		{name: "no symbols and allowed", args: []string{"--no-symbols", "--allowed-symbols", "!"}, wantErr: "cannot be combined"},
+		{name: "empty allowed set", args: []string{"--allowed-symbols", ""}, wantErr: "at least one"},
+		{name: "unsupported allowed symbol", args: []string{"--allowed-symbols", "!|"}, wantErr: "unsupported symbol"},
+		{name: "exclude all symbols", args: []string{"--exclude-symbols", symbolAlphabet}, wantErr: "cannot exclude every"},
+	}
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			args := append([]string{"gen", "--platform", "github", "--email", "alice@example.com"}, tc.args...)
+			err := runCLI(testCLI(args...))
+			if err == nil || !strings.Contains(err.Error(), tc.wantErr) {
+				t.Fatalf("error = %v, want error containing %q", err, tc.wantErr)
+			}
+		})
+	}
+}
+
 func TestCLIMissingRequiredFlags(t *testing.T) {
 	cfg := testCLI("gen", "--email", "alice@example.com")
 	err := runCLI(cfg)
