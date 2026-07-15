@@ -102,6 +102,27 @@ func TestGeneratePasswordLength(t *testing.T) {
 	}
 }
 
+func TestGeneratePasswordAllowsShortLength(t *testing.T) {
+	opts := defaultTestOptions()
+	opts.Length = 1
+	password, err := GeneratePassword(testSeed(), opts)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(password) != opts.Length {
+		t.Fatalf("password length = %d, want %d", len(password), opts.Length)
+	}
+}
+
+func TestGeneratePasswordRejectsNonPositiveLength(t *testing.T) {
+	opts := defaultTestOptions()
+	opts.Length = 0
+	_, err := GeneratePassword(testSeed(), opts)
+	if err == nil || !strings.Contains(err.Error(), "length must be at least") {
+		t.Fatalf("error = %v, want invalid length error", err)
+	}
+}
+
 func TestDefaultPasswordContainsRequiredClasses(t *testing.T) {
 	password, err := GeneratePassword(testSeed(), defaultTestOptions())
 	if err != nil {

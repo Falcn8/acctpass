@@ -206,7 +206,13 @@ func runGen(cfg cliConfig, args []string) error {
 		return fmt.Errorf("counter must be at least 1")
 	}
 	if *length < minPasswordLength {
-		return fmt.Errorf("length must be at least %d; %d is recommended", minPasswordLength, defaultPasswordLength)
+		return fmt.Errorf("length must be at least %d", minPasswordLength)
+	}
+	if warnings := generatedPasswordWarnings(*length, !*noSymbols); len(warnings) > 0 {
+		fmt.Fprintln(cfg.stderr, "Warning: this generated password may be weak.")
+		for _, warning := range warnings {
+			fmt.Fprintf(cfg.stderr, "- %s\n", warning)
+		}
 	}
 
 	path, err := cfg.vaultPathFunc()
@@ -280,6 +286,17 @@ func runInfo(cfg cliConfig, args []string) error {
 	fmt.Fprintf(cfg.stdout, "Argon2id threads: %d\n", vault.KDF.Threads)
 	fmt.Fprintf(cfg.stdout, "Cipher: %s\n", vault.Cipher.Name)
 	return nil
+}
+
+func generatedPasswordWarnings(length int, symbols bool) []string {
+	var warnings []string
+	if length < warnPasswordLength {
+		warnings = append(warnings, fmt.Sprintf("it is shorter than %d characters; %d is recommended", warnPasswordLength, defaultPasswordLength))
+	}
+	if !symbols {
+		warnings = append(warnings, "symbols are disabled")
+	}
+	return warnings
 }
 
 func printUsage(w io.Writer) {
