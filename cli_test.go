@@ -86,6 +86,46 @@ func TestCLIInitStrongMasterPasswordSkipsWeakConfirmation(t *testing.T) {
 	}
 }
 
+func TestMasterPasswordWarningsAreAlwaysBypassable(t *testing.T) {
+	testCases := []struct {
+		name     string
+		password string
+		warning  string
+	}{
+		{name: "short", password: "short", warning: "shorter than 16"},
+		{name: "common word", password: "a-very-long-password-value", warning: "common password word"},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			path := filepath.Join(t.TempDir(), "vault.json")
+			stderr := &bytes.Buffer{}
+			confirmationCalled := false
+			cfg := testCLI("init")
+			cfg.stderr = stderr
+			cfg.vaultPathFunc = func() (string, error) { return path, nil }
+			cfg.passwordReader = func(prompt string) ([]byte, error) { return []byte(tc.password), nil }
+			cfg.confirmationReader = func(prompt string) (bool, error) {
+				confirmationCalled = true
+				return true, nil
+			}
+
+			if err := runCLI(cfg); err != nil {
+				t.Fatal(err)
+			}
+			if !confirmationCalled {
+				t.Fatal("warning did not offer confirmation")
+			}
+			if !strings.Contains(stderr.String(), tc.warning) {
+				t.Fatalf("stderr = %q, want warning containing %q", stderr.String(), tc.warning)
+			}
+			if _, err := os.Stat(path); err != nil {
+				t.Fatalf("vault was not created after accepting warning: %v", err)
+			}
+		})
+	}
+}
+
 func TestCLIMissingVaultError(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "vault.json")
 	cfg := testCLI("gen", "--platform", "github", "--email", "alice@example.com")
@@ -115,10 +155,61 @@ func TestCLIWrongPasswordError(t *testing.T) {
 }
 
 func TestCLIInvalidLengthError(t *testing.T) {
-	cfg := testCLI("gen", "--platform", "github", "--email", "alice@example.com", "--length", "8")
+	cfg := testCLI("gen", "--platform", "github", "--email", "alice@example.com", "--length", "0")
 	err := runCLI(cfg)
 	if err == nil || !strings.Contains(err.Error(), "length must be at least") {
 		t.Fatalf("error = %v, want invalid length error", err)
+	}
+}
+
+func TestCLIShortLengthWarnsAndGenerates(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "vault.json")
+	vault, err := newVaultWithSeed([]byte("master"), testSeed(), fastKDFParams(), time.Unix(0, 0).UTC())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := SaveVault(path, vault); err != nil {
+		t.Fatal(err)
+	}
+
+	stdout := &bytes.Buffer{}
+	stderr := &bytes.Buffer{}
+	cfg := testCLI("gen", "--platform", "github", "--email", "alice@example.com", "--no-symbols", "--length", "8", "--print")
+	cfg.stdout = stdout
+	cfg.stderr = stderr
+	cfg.vaultPathFunc = func() (string, error) { return path, nil }
+
+	if err := runCLI(cfg); err != nil {
+		t.Fatal(err)
+	}
+	password := strings.TrimSpace(stdout.String())
+	if len(password) != 8 {
+		t.Fatalf("password length = %d, want 8", len(password))
+	}
+	warning := stderr.String()
+	if !strings.Contains(warning, "may be weak") || !strings.Contains(warning, "shorter than 12") || !strings.Contains(warning, "symbols are disabled") {
+		t.Fatalf("stderr = %q, want weak generated-password warnings", warning)
+	}
+}
+
+func TestGeneratedPasswordWarningCases(t *testing.T) {
+	testCases := []struct {
+		name        string
+		length      int
+		symbols     bool
+		wantWarning string
+	}{
+		{name: "short", length: 8, symbols: true, wantWarning: "shorter than 12"},
+		{name: "no symbols", length: defaultPasswordLength, symbols: false, wantWarning: "symbols are disabled"},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			warnings := strings.Join(generatedPasswordWarnings(tc.length, tc.symbols), "\n")
+			if !strings.Contains(warnings, tc.wantWarning) {
+				t.Fatalf("warnings = %q, want %q", warnings, tc.wantWarning)
+			}
+		})
 	}
 }
 

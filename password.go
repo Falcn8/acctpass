@@ -9,7 +9,8 @@ import (
 
 const (
 	defaultPasswordLength = 24
-	minPasswordLength     = 12
+	minPasswordLength     = 1
+	warnPasswordLength    = 12
 	lowerAlphabet         = "abcdefghijklmnopqrstuvwxyz"
 	upperAlphabet         = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	digitAlphabet         = "0123456789"
@@ -53,6 +54,7 @@ func GeneratePassword(seed []byte, opts PasswordOptions) (string, error) {
 		alphabet = noSymbolsAlphabet
 	}
 	baseContext := derivationContext(platform, email, opts.Counter, opts.Length, opts.Symbols)
+	enforceCharacterClasses := opts.Length >= requiredCharacterClassCount(opts.Symbols)
 	for attempt := 0; attempt < 10_000; attempt++ {
 		context := baseContext
 		if attempt > 0 {
@@ -62,7 +64,7 @@ func GeneratePassword(seed []byte, opts PasswordOptions) (string, error) {
 		if err != nil {
 			return "", err
 		}
-		if satisfiesPasswordRules(password, opts.Symbols) {
+		if !enforceCharacterClasses || satisfiesPasswordRules(password, opts.Symbols) {
 			return password, nil
 		}
 	}
@@ -137,4 +139,11 @@ func satisfiesPasswordRules(password string, requireSymbol bool) bool {
 		}
 	}
 	return hasLower && hasUpper && hasDigit && hasSymbol
+}
+
+func requiredCharacterClassCount(requireSymbol bool) int {
+	if requireSymbol {
+		return 4
+	}
+	return 3
 }
