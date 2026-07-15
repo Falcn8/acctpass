@@ -128,7 +128,7 @@ func TestDefaultPasswordContainsRequiredClasses(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !satisfiesPasswordRules(password, true) {
+	if !satisfiesPasswordRules(password, symbolAlphabet) {
 		t.Fatalf("password does not satisfy required classes: %q", password)
 	}
 }
@@ -143,8 +143,78 @@ func TestNoSymbolsPasswordContainsNoSymbols(t *testing.T) {
 	if strings.ContainsAny(password, symbolAlphabet) {
 		t.Fatalf("no-symbols password contains a symbol: %q", password)
 	}
-	if !satisfiesPasswordRules(password, false) {
+	if !satisfiesPasswordRules(password, "") {
 		t.Fatalf("no-symbols password does not satisfy required classes: %q", password)
+	}
+}
+
+func TestGeneratePasswordUsesOnlyAllowedSymbols(t *testing.T) {
+	opts := defaultTestOptions()
+	opts.AllowedSymbols = "@!@"
+	password, err := GeneratePassword(testSeed(), opts)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.ContainsAny(password, "#$%^&*()-_=+[]{}?") {
+		t.Fatalf("password contains a symbol outside the allowed set: %q", password)
+	}
+	if !strings.ContainsAny(password, "!@") {
+		t.Fatalf("password does not contain a required allowed symbol: %q", password)
+	}
+}
+
+func TestGeneratePasswordNormalizesAllowedSymbolOrder(t *testing.T) {
+	opts := defaultTestOptions()
+	opts.AllowedSymbols = "@!"
+	first, err := GeneratePassword(testSeed(), opts)
+	if err != nil {
+		t.Fatal(err)
+	}
+	opts.AllowedSymbols = "!@"
+	second, err := GeneratePassword(testSeed(), opts)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if first != second {
+		t.Fatalf("equivalent allowed-symbol sets produced different passwords: %q != %q", first, second)
+	}
+}
+
+func TestGeneratePasswordFullAllowedSetPreservesDefaultPassword(t *testing.T) {
+	opts := defaultTestOptions()
+	defaultPassword, err := GeneratePassword(testSeed(), opts)
+	if err != nil {
+		t.Fatal(err)
+	}
+	opts.AllowedSymbols = symbolAlphabet
+	explicitPassword, err := GeneratePassword(testSeed(), opts)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if defaultPassword != explicitPassword {
+		t.Fatalf("full allowed-symbol set changed the default password: %q != %q", defaultPassword, explicitPassword)
+	}
+}
+
+func TestGeneratePasswordRejectsUnsupportedAllowedSymbol(t *testing.T) {
+	opts := defaultTestOptions()
+	opts.AllowedSymbols = "!|"
+	_, err := GeneratePassword(testSeed(), opts)
+	if err == nil || !strings.Contains(err.Error(), "unsupported symbol") {
+		t.Fatalf("error = %v, want unsupported symbol error", err)
+	}
+}
+
+func TestAllowedSymbolsAfterExcluding(t *testing.T) {
+	allowed, err := allowedSymbolsAfterExcluding("{}[]")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.ContainsAny(allowed, "{}[]") {
+		t.Fatalf("allowed symbols %q include an excluded symbol", allowed)
+	}
+	if allowed != "!@#$%^&*()-_=+?" {
+		t.Fatalf("allowed symbols = %q, want %q", allowed, "!@#$%^&*()-_=+?")
 	}
 }
 
@@ -152,6 +222,14 @@ func TestRejectionSamplingRejectsOutOfRangeBytes(t *testing.T) {
 	got := rejectionSampleBytes([]byte{250, 251, 252, 253, 254, 255, 0, 1}, "0123456789", 2)
 	if got != "01" {
 		t.Fatalf("rejection sampling result = %q, want %q", got, "01")
+	}
+}
+
+func TestRejectionSamplingSupportsAlphabetThatDividesByteRange(t *testing.T) {
+	alphabet := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@"
+	got := rejectionSampleBytes([]byte{0, 63, 64, 255}, alphabet, 4)
+	if got != "a@a@" {
+		t.Fatalf("rejection sampling result = %q, want %q", got, "a@a@")
 	}
 }
 

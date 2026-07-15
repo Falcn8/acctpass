@@ -17,17 +17,15 @@ const (
 	symbolAlphabet        = "!@#$%^&*()-_=+[]{}?"
 )
 
-const (
-	defaultAlphabet   = lowerAlphabet + upperAlphabet + digitAlphabet + symbolAlphabet
-	noSymbolsAlphabet = lowerAlphabet + upperAlphabet + digitAlphabet
-)
+const noSymbolsAlphabet = lowerAlphabet + upperAlphabet + digitAlphabet
 
 type PasswordOptions struct {
-	Platform string
-	Email    string
-	Counter  int
-	Length   int
-	Symbols  bool
+	Platform       string
+	Email          string
+	Counter        int
+	Length         int
+	Symbols        bool
+	AllowedSymbols string
 }
 
 func GeneratePassword(seed []byte, opts PasswordOptions) (string, error) {
@@ -49,11 +47,15 @@ func GeneratePassword(seed []byte, opts PasswordOptions) (string, error) {
 		return "", fmt.Errorf("email cannot be empty")
 	}
 
-	alphabet := defaultAlphabet
-	if !opts.Symbols {
-		alphabet = noSymbolsAlphabet
+	allowedSymbols, err := resolveAllowedSymbols(opts.Symbols, opts.AllowedSymbols)
+	if err != nil {
+		return "", err
 	}
+	alphabet := noSymbolsAlphabet + allowedSymbols
 	baseContext := derivationContext(platform, email, opts.Counter, opts.Length, opts.Symbols)
+	if opts.Symbols && allowedSymbols != symbolAlphabet {
+		baseContext += "|allowed-symbols=" + allowedSymbols
+	}
 	enforceCharacterClasses := opts.Length >= requiredCharacterClassCount(opts.Symbols)
 	for attempt := 0; attempt < 10_000; attempt++ {
 		context := baseContext
@@ -64,11 +66,52 @@ func GeneratePassword(seed []byte, opts PasswordOptions) (string, error) {
 		if err != nil {
 			return "", err
 		}
-		if !enforceCharacterClasses || satisfiesPasswordRules(password, opts.Symbols) {
+		if !enforceCharacterClasses || satisfiesPasswordRules(password, allowedSymbols) {
 			return password, nil
 		}
 	}
 	return "", fmt.Errorf("could not generate a password satisfying character-class rules")
+}
+
+func resolveAllowedSymbols(symbols bool, customSymbols string) (string, error) {
+	if !symbols {
+		if customSymbols != "" {
+			return "", fmt.Errorf("allowed symbols cannot be set when symbols are disabled")
+		}
+		return "", nil
+	}
+	if customSymbols == "" {
+		return symbolAlphabet, nil
+	}
+	return normalizeSymbolSubset(customSymbols)
+}
+
+func normalizeSymbolSubset(symbols string) (string, error) {
+	for _, symbol := range symbols {
+		if !strings.ContainsRune(symbolAlphabet, symbol) {
+			return "", fmt.Errorf("unsupported symbol %q; supported symbols are %q", symbol, symbolAlphabet)
+		}
+	}
+	var normalized strings.Builder
+	for _, symbol := range symbolAlphabet {
+		if strings.ContainsRune(symbols, symbol) {
+			normalized.WriteRune(symbol)
+		}
+	}
+	return normalized.String(), nil
+}
+
+func allowedSymbolsAfterExcluding(excluded string) (string, error) {
+	if _, err := normalizeSymbolSubset(excluded); err != nil {
+		return "", err
+	}
+	var allowed strings.Builder
+	for _, symbol := range symbolAlphabet {
+		if !strings.ContainsRune(excluded, symbol) {
+			allowed.WriteRune(symbol)
+		}
+	}
+	return allowed.String(), nil
 }
 
 func normalizeIdentity(value string) string {
@@ -106,14 +149,14 @@ func rejectionSampleBytes(randomBytes []byte, alphabet string, needed int) strin
 	if needed <= 0 || len(alphabet) == 0 {
 		return ""
 	}
-	limit := byte(256 - (256 % len(alphabet)))
+	limit := 256 - (256 % len(alphabet))
 	var out strings.Builder
 	out.Grow(needed)
 	for _, b := range randomBytes {
 		if out.Len() == needed {
 			break
 		}
-		if b >= limit {
+		if int(b) >= limit {
 			continue
 		}
 		out.WriteByte(alphabet[int(b)%len(alphabet)])
@@ -121,11 +164,11 @@ func rejectionSampleBytes(randomBytes []byte, alphabet string, needed int) strin
 	return out.String()
 }
 
-func satisfiesPasswordRules(password string, requireSymbol bool) bool {
+func satisfiesPasswordRules(password, allowedSymbols string) bool {
 	hasLower := false
 	hasUpper := false
 	hasDigit := false
-	hasSymbol := !requireSymbol
+	hasSymbol := allowedSymbols == ""
 	for _, r := range password {
 		switch {
 		case strings.ContainsRune(lowerAlphabet, r):
@@ -134,7 +177,7 @@ func satisfiesPasswordRules(password string, requireSymbol bool) bool {
 			hasUpper = true
 		case strings.ContainsRune(digitAlphabet, r):
 			hasDigit = true
-		case strings.ContainsRune(symbolAlphabet, r):
+		case strings.ContainsRune(allowedSymbols, r):
 			hasSymbol = true
 		}
 	}

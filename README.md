@@ -51,8 +51,20 @@ acctpass init
 acctpass gen --platform github --email alice@example.com
 acctpass gen --platform github --email alice@example.com --print
 acctpass gen --platform github --email alice@example.com --counter 2
+acctpass gen --platform legacy --email alice@example.com --allowed-symbols '!@#'
+acctpass gen --platform forum --email alice@example.com --exclude-symbols '[]{}'
 acctpass info
 ```
+
+By default, generated passwords can use `!@#$%^&*()-_=+[]{}?`. Use
+`--allowed-symbols` to restrict generation to a non-empty subset of those
+symbols, or `--exclude-symbols` to prohibit a subset while still requiring a
+symbol. The two flags are mutually exclusive and cannot be combined with
+`--no-symbols`. Quote symbol values so your shell does not interpret them.
+
+Symbol restrictions are part of the deterministic generation inputs. Use the
+same restriction whenever you regenerate a password; changing it produces a
+different password.
 
 ## How is this different from a password manager?
 
@@ -62,7 +74,7 @@ across devices, share credentials with a team, or help recover lost data.
 
 Instead, it is a small deterministic password generator. Given the same master
 password, encrypted local seed, platform, email, counter, length, and symbol
-setting, it regenerates the same password again.
+settings, it regenerates the same password again.
 
 Use a password manager if you want browser/mobile apps, sync, sharing, secure
 notes, passkeys, recovery workflows, or audited production-grade credential
