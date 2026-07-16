@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Download acctpass, an offline desktop app that regenerates account passwords without storing the generated passwords.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://acctpass.hexagon.one/">
+  <link rel="sitemap" type="application/xml" href="https://acctpass.hexagon.one/sitemap.xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="acctpass">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://acctpass.hexagon.one/">
+  <meta property="og:title" content="acctpass — Passwords you don’t have to store">
+  <meta property="og:description" content="Generate account passwords locally on macOS, Windows, and Linux.">
+  <meta property="og:image" content="https://acctpass.hexagon.one/assets/acctpass-app.webp">
+  <meta property="og:image:width" content="980">
+  <meta property="og:image:height" content="700">
+  <meta property="og:image:alt" content="acctpass desktop app showing the local password generator">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="acctpass — Passwords you don’t have to store">
+  <meta name="twitter:description" content="Generate account passwords locally on macOS, Windows, and Linux.">
+  <meta name="twitter:image" content="https://acctpass.hexagon.one/assets/acctpass-app.webp">
+  <meta name="twitter:image:alt" content="acctpass desktop app showing the local password generator">
+  <title>acctpass — Download the desktop app</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="v1-overrides.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "acctpass",
+    "url": "https://acctpass.hexagon.one/",
+    "description": "An offline desktop app that regenerates account passwords without storing the generated passwords.",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "macOS, Windows, Linux",
+    "softwareVersion": "0.1.0",
+    "offers": {
+      "@type": "Offer",
+      "price": 0,
+      "priceCurrency": "USD"
+    },
+    "downloadUrl": "https://github.com/Falcn8/acctpass/releases/tag/app-v0.1.0",
+    "license": "https://github.com/Falcn8/acctpass/blob/main/LICENSE",
+    "codeRepository": "https://github.com/Falcn8/acctpass",
+    "isAccessibleForFree": true,
+    "image": "https://acctpass.hexagon.one/assets/acctpass-app.webp",
+    "screenshot": "https://acctpass.hexagon.one/assets/acctpass-app.webp"
+  }
+  </script>
+</head>
+<body>
+  <main class="site" id="top">
+    <header class="header" data-nav>
+      <a class="brand" href="#top" aria-label="acctpass home"><span class="brandmark" aria-hidden="true"><i></i><b></b></span>acctpass</a>
+      <nav aria-label="Main navigation">
+        <a href="#features">Features</a><a href="#how">How it works</a><a href="#security">Security</a><a href="#open">Open source</a>
+      </nav>
+      <a class="pill dark" href="#install">Download app <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-download"></use></svg></a>
+    </header>
+
+    <section class="hero">
+      <div class="trace trace-left" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="trace trace-right" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="hero-copy">
+        <p class="eyebrow">OFFLINE BY DESIGN · OPEN SOURCE</p>
+        <h1>Passwords you don’t have to store.</h1>
+        <p>acctpass regenerates a unique, strong password for every account from one encrypted local seed and a recipe only you control.</p>
+        <div class="hero-actions">
+          <a class="store" href="#install"><span class="store-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-download"></use></svg></span><span class="store-copy"><small>DESKTOP BETA</small>Download the app</span></a>
+          <a class="store" href="https://github.com/Falcn8/acctpass" target="_blank" rel="noreferrer"><span class="store-icon"><svg class="icon icon-solid" aria-hidden="true"><use href="assets/icons.svg#icon-github"></use></svg></span><span class="store-copy"><small>MIT LICENSED</small>View on GitHub</span></a>
+        </div>
+      </div>
+
+      <div class="hero-stage" aria-label="acctpass desktop application">
+        <span class="chip c1">No cloud account</span><span class="chip c2">Encrypted local seed</span>
+        <span class="chip c3">Same recipe, same result</span><span class="chip c4">Passwords never saved</span>
+        <figure class="actual-app">
+          <img src="assets/acctpass-app.webp" width="980" height="700" alt="acctpass desktop app showing the local password generator" fetchpriority="high">
+        </figure>
+      </div>
+    </section>
+
+    <section class="intro" id="features">
+      <p>Most password tools retrieve a secret from a vault. acctpass takes a different route: it reconstructs the secret only when you need it.</p>
+      <h2>One local secret.<br>Every account.</h2>
+    </section>
+
+    <section class="cards">
+      <article class="card cream">
+        <div class="card-title"><span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-key"></use></svg></span><h3>Regenerate,<br>don’t retrieve</h3></div>
+        <div class="recipe-art" aria-hidden="true"><div>counter <b>02</b></div><div>account <b>alice@…</b></div><div>service <b>github.com</b></div><span>→</span><em>••••••••</em></div>
+        <p>The same versioned recipe regenerates the same result, every time.</p>
+      </article>
+      <article class="card lilac">
+        <div class="card-title"><span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-shield-lock"></use></svg></span><h3>Local by<br>default</h3></div>
+        <div class="vault-art" aria-hidden="true"><i></i><i></i><div><span>✦</span><b>vault.json</b><small>encrypted seed</small></div></div>
+        <p>No account, no sync service, and no network connection required.</p>
+      </article>
+      <article class="card graphite">
+        <div class="card-title"><span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-rotate"></use></svg></span><h3>Rotate without<br>starting over</h3></div>
+        <div class="counter-art" aria-hidden="true"><div><small>VERSION</small><b>01</b></div><span>→</span><div><small>VERSION</small><b>02</b></div></div>
+        <p>Increment the counter to create a new password for one account.</p>
+      </article>
+    </section>
+
+    <section class="how" id="how">
+      <div class="split-title"><div><p class="kicker">A SMALL, EXPLAINABLE SYSTEM</p><h2>From master password<br>to account password.</h2></div><p>Your master password unlocks a random local seed. The seed and account recipe then flow through a deterministic, versioned process.</p></div>
+      <div class="how-grid">
+        <div class="steps">
+          <article><span>01</span><h3>Unlock the seed</h3><p>Argon2id derives the key used to decrypt your local vault.</p></article>
+          <article><span>02</span><h3>Describe the account</h3><p>Service, account, counter, length, and symbol preference.</p></article>
+          <article><span>03</span><h3>Derive locally</h3><p>HMAC-SHA256 turns the seed and recipe into deterministic bytes.</p></article>
+          <article><span>04</span><h3>Copy, then forget</h3><p>The result is copied for use and never added to the vault.</p></article>
+        </div>
+        <div class="process">
+          <header><b>acctpass core</b><span>v1</span></header>
+          <div class="process-row"><span>01</span><p><small>LOCAL INPUT</small><b>Encrypted seed</b></p><em>64 MiB</em></div><i class="connector"></i>
+          <div class="process-row"><span>02</span><p><small>ACCOUNT RECIPE</small><b>github.com · alice@… · 01</b></p><em>24 chars</em></div><i class="connector"></i>
+          <div class="process-row output"><span>03</span><p><small>GENERATED IN MEMORY</small><b>•••• •••• •••• ••••</b></p><em>Copied</em></div>
+          <footer><span><i></i>No network request</span><span><i></i>No saved result</span></footer>
+        </div>
+      </div>
+    </section>
+
+    <section class="desktop" id="open">
+      <div><p class="kicker">THE DESKTOP APP, AVAILABLE NOW</p><h2>The CLI’s behavior, made approachable.</h2><p>The native app uses a Rust/Tauri backend and compatibility vectors that check its password output against the Go CLI.</p><a href="#install">Choose your platform ↓</a></div>
+      <div class="platforms">
+        <article><span><svg class="platform-icon" aria-hidden="true"><use href="assets/icons.svg#icon-apple"></use></svg></span><p><b>macOS</b><small>Apple Silicon + Intel DMG</small></p><em>Available</em></article>
+        <article><span><svg class="platform-icon" aria-hidden="true"><use href="assets/icons.svg#icon-windows"></use></svg></span><p><b>Windows</b><small>EXE setup + MSI installer</small></p><em>Available</em></article>
+        <article><span><svg class="platform-icon" aria-hidden="true"><use href="assets/icons.svg#icon-linux"></use></svg></span><p><b>Linux</b><small>AppImage · DEB · RPM</small></p><em>Available</em></article>
+      </div>
+      <div class="planpoints">
+        <article><span>01</span><h3>CLI-compatible vaults</h3><p>Import the same encrypted seed without changing existing passwords.</p></article>
+        <article><span>02</span><h3>Hidden by default</h3><p>Generate and copy without leaving the password visible on screen.</p></article>
+        <article><span>03</span><h3>Clipboard clearing</h3><p>Clear the copied password after 45 seconds if it is still unchanged.</p></article>
+        <article><span>04</span><h3>Encrypted transfer</h3><p>Export or import an encrypted vault copy when moving devices.</p></article>
+      </div>
+    </section>
+
+    <section class="security" id="security">
+      <div class="security-copy"><p class="kicker">SECURITY, WITHOUT THE SLOGANS</p><h2>Designed to be inspected, tested, and questioned.</h2><p>acctpass names the exact primitives it uses and the limits it has. It does not call unaudited software “military-grade.”</p></div>
+      <article><span>01</span><p>Vault key derivation</p><h3>Argon2id</h3><small>64 MiB · time cost 3 · 1 thread</small></article>
+      <article><span>02</span><p>Seed encryption</p><h3>XChaCha20-Poly1305</h3><small>Authenticated encryption with a random nonce</small></article>
+      <article><span>03</span><p>Password derivation</p><h3>HMAC-SHA256</h3><small>Versioned context and rejection sampling</small></article>
+      <div class="audit"><b><i></i> Independent audit pending</b><p>For critical or regulated accounts, use an audited password manager.</p><a href="https://github.com/Falcn8/acctpass/blob/main/SECURITY.md" target="_blank" rel="noreferrer">Security policy ↗</a></div>
+    </section>
+
+    <section class="compare"><div><p class="kicker">A DIFFERENT TRADEOFF</p><h2>Not a password manager in disguise.</h2></div><div class="compare-cards"><article><small>TRADITIONAL MANAGER</small><h3>Encrypts and retrieves saved passwords.</h3><p>Best for autofill, passkeys, sharing, recovery, or sync.</p></article><article><small>ACCTPASS</small><h3>Regenerates passwords from a local seed.</h3><p>Best for a tiny offline tool when you accept the backup tradeoff.</p></article></div></section>
+
+    <section class="install" id="install">
+      <div><p class="kicker">DOWNLOAD THE DESKTOP BETA</p><h2>Install acctpass.</h2><p>Choose the package for your platform. This beta is not commercially signed or notarized, so your operating system may show an unverified-developer warning.</p>
+        <div class="tabs" role="tablist" aria-label="Choose an operating system"><button type="button" role="tab" aria-selected="true" aria-controls="download-panel" data-platform="mac"><svg class="tab-icon" aria-hidden="true"><use href="assets/icons.svg#icon-apple"></use></svg>macOS</button><button type="button" role="tab" aria-selected="false" aria-controls="download-panel" data-platform="windows" tabindex="-1"><svg class="tab-icon" aria-hidden="true"><use href="assets/icons.svg#icon-windows"></use></svg>Windows</button><button type="button" role="tab" aria-selected="false" aria-controls="download-panel" data-platform="linux" tabindex="-1"><svg class="tab-icon" aria-hidden="true"><use href="assets/icons.svg#icon-linux"></use></svg>Linux</button></div>
+        <div class="download-panel" id="download-panel" role="tabpanel" aria-live="polite">
+          <p class="download-title" data-platform-title>macOS downloads</p>
+          <div class="download-actions" data-download-links><a class="download-button primary" href="https://github.com/Falcn8/acctpass/releases/download/app-v0.1.0/acctpass_0.1.0_aarch64.dmg" download>Apple Silicon DMG <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-download"></use></svg></a><a class="download-button" href="https://github.com/Falcn8/acctpass/releases/download/app-v0.1.0/acctpass_0.1.0_x64.dmg" download>Intel Mac DMG <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-download"></use></svg></a></div>
+          <p class="download-note" data-platform-note>For M1 and newer Macs, choose Apple Silicon.</p>
+        </div>
+        <div class="install-links"><a href="https://github.com/Falcn8/acctpass/releases/tag/app-v0.1.0" target="_blank" rel="noreferrer">Release notes ↗</a><a href="https://github.com/Falcn8/acctpass" target="_blank" rel="noreferrer">View source ↗</a></div>
+      </div>
+      <aside class="release-card" aria-label="Release information"><p>Public beta</p><strong>v0.1.0</strong><ul><li><span>Platforms</span><b>macOS · Windows · Linux</b></li><li><span>License</span><b>MIT</b></li><li><span>Tracking</span><b>None</b></li></ul></aside>
+    </section>
+
+    <footer class="footer"><div><a class="brand" href="#top"><span class="brandmark" aria-hidden="true"><i></i><b></b></span>acctpass</a><p>Deterministic offline password generation.</p></div><nav><a href="#features">Features</a><a href="#how">How it works</a><a href="#security">Security</a><a href="#install">Install</a></nav><div class="footlinks"><a href="https://github.com/Falcn8/acctpass" aria-label="GitHub"><svg class="icon icon-solid" aria-hidden="true"><use href="assets/icons.svg#icon-github"></use></svg></a><a href="https://github.com/Falcn8/acctpass/blob/main/LICENSE">MIT</a></div><div class="copyright"><span>© 2026 acctpass contributors</span><span>MIT licensed · No tracking on this site</span></div></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
