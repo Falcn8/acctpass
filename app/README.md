@@ -30,6 +30,15 @@ Desktop release build:
 npm run tauri build
 ```
 
+The release workflow builds one Universal macOS installer with native Apple
+Silicon and Intel support. For a local Universal build, install both Rust
+targets and pass Tauri's Universal target:
+
+```sh
+rustup target add aarch64-apple-darwin x86_64-apple-darwin
+npm run tauri build -- --target universal-apple-darwin
+```
+
 Mobile project setup requires the normal Tauri Android/iOS prerequisites:
 
 ```sh
