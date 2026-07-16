@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "acctpass",
+  "version": "0.1.0",
+  "identifier": "com.falcn8.acctpass",
+  "build": {
+    "beforeDevCommand": "cd ../app-v2 && npm run dev -- --host 127.0.0.1 --port 1421",
+    "devUrl": "http://localhost:1421",
+    "beforeBuildCommand": "cd ../app-v2 && npm run build",
+    "frontendDist": "../../app-v2/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "acctpass",
+        "width": 980,
+        "height": 700,
+        "minWidth": 720,
+        "minHeight": 640,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ]
+  },
+  "bundle": {
+    "macOS": {
+      "signingIdentity": "-"
+    }
+  }
+}

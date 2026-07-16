@@ -1,0 +1,464 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		060A84C0E4F6614FCC4F8D41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E40162136B9D0FDE488C562D /* LaunchScreen.storyboard */; };
+		11D0CB6C3E32F6F9121F8104 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 5DB7BCB4C4081AAE2E3142EC /* assets */; };
+		1269CE7D86166E0A57073D65 /* libapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F4D28CADD662976F7695D9 /* libapp.a */; };
+		220FE37AD46F339E2E624C7D /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760DDA6498F0FF3630583C6 /* Metal.framework */; };
+		273E58516C429FCA24FD49A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA6A3A4140A4ADF8140DED28 /* Assets.xcassets */; };
+		2C69207103C5DDF0547407F9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC18ED1E2D0DE593D9DE2142 /* WebKit.framework */; };
+		5E20D4F9A5BD7DC7AEAB1C68 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5235C321797472FBC429ABD6 /* main.mm */; };
+		68040A506DB1D97D7B7D46A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B3E380779B1D45417CE363 /* UIKit.framework */; };
+		956D3D7426D6FD218E8BEA67 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63A4C50FE734F67A9B4349B /* Security.framework */; };
+		AADD6D2D1BD58B3F30A120A5 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543E73CE510A3AC2B524DE68 /* MetalKit.framework */; };
+		B6755CE1BF39C3BA14F198DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACAE6ABDCE41FB7D5C2D708 /* QuartzCore.framework */; };
+		FE543C86C31B584E5076FEAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4E09119C72E7A1BAD40D24 /* CoreGraphics.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		094E5850784EF23E284B9E69 /* crypto.rs */ = {isa = PBXFileReference; path = crypto.rs; sourceTree = "<group>"; };
+		0BE25B66400E90F87EF45134 /* acctpass-app_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "acctpass-app_iOS.entitlements"; sourceTree = "<group>"; };
+		0EC79A1B0B5E5C6785A9CE64 /* main.rs */ = {isa = PBXFileReference; path = main.rs; sourceTree = "<group>"; };
+		1ACAE6ABDCE41FB7D5C2D708 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1DB6C0A6AFBB825A7800F561 /* vault.rs */ = {isa = PBXFileReference; path = vault.rs; sourceTree = "<group>"; };
+		467AD0533DA5012102C89A96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5235C321797472FBC429ABD6 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		543E73CE510A3AC2B524DE68 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		5A4E09119C72E7A1BAD40D24 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5DB7BCB4C4081AAE2E3142EC /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
+		7083A027A86D3304DD1B388F /* acctpass-app_iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "acctpass-app_iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		97B3E380779B1D45417CE363 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A2F4D28CADD662976F7695D9 /* libapp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libapp.a; sourceTree = "<group>"; };
+		A63A4C50FE734F67A9B4349B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B3BE6762716993207B5D9DC5 /* lib.rs */ = {isa = PBXFileReference; path = lib.rs; sourceTree = "<group>"; };
+		BC18ED1E2D0DE593D9DE2142 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		DD267F35A1997231019C033C /* bindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bindings.h; sourceTree = "<group>"; };
+		E40162136B9D0FDE488C562D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EA6A3A4140A4ADF8140DED28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F760DDA6498F0FF3630583C6 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5E6CE6DBB731CA4AD8F38CD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1269CE7D86166E0A57073D65 /* libapp.a in Frameworks */,
+				FE543C86C31B584E5076FEAF /* CoreGraphics.framework in Frameworks */,
+				220FE37AD46F339E2E624C7D /* Metal.framework in Frameworks */,
+				AADD6D2D1BD58B3F30A120A5 /* MetalKit.framework in Frameworks */,
+				B6755CE1BF39C3BA14F198DC /* QuartzCore.framework in Frameworks */,
+				956D3D7426D6FD218E8BEA67 /* Security.framework in Frameworks */,
+				68040A506DB1D97D7B7D46A8 /* UIKit.framework in Frameworks */,
+				2C69207103C5DDF0547407F9 /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		033733ACE8312A6F1496A460 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				65C793A942C2BFD716196588 /* acctpass-app */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		1AC30E8DCCB3035DC126259A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				094E5850784EF23E284B9E69 /* crypto.rs */,
+				B3BE6762716993207B5D9DC5 /* lib.rs */,
+				0EC79A1B0B5E5C6785A9CE64 /* main.rs */,
+				1DB6C0A6AFBB825A7800F561 /* vault.rs */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = "<group>";
+		};
+		4260BD60D00590490DE35706 /* bindings */ = {
+			isa = PBXGroup;
+			children = (
+				DD267F35A1997231019C033C /* bindings.h */,
+			);
+			path = bindings;
+			sourceTree = "<group>";
+		};
+		65C793A942C2BFD716196588 /* acctpass-app */ = {
+			isa = PBXGroup;
+			children = (
+				5235C321797472FBC429ABD6 /* main.mm */,
+				4260BD60D00590490DE35706 /* bindings */,
+			);
+			path = "acctpass-app";
+			sourceTree = "<group>";
+		};
+		66A31B7DE290CAE21135FEF7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7083A027A86D3304DD1B388F /* acctpass-app_iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		98BC4C097BAFF05B18EDC0A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5A4E09119C72E7A1BAD40D24 /* CoreGraphics.framework */,
+				A2F4D28CADD662976F7695D9 /* libapp.a */,
+				F760DDA6498F0FF3630583C6 /* Metal.framework */,
+				543E73CE510A3AC2B524DE68 /* MetalKit.framework */,
+				1ACAE6ABDCE41FB7D5C2D708 /* QuartzCore.framework */,
+				A63A4C50FE734F67A9B4349B /* Security.framework */,
+				97B3E380779B1D45417CE363 /* UIKit.framework */,
+				BC18ED1E2D0DE593D9DE2142 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE5B4278DD2408365729F917 /* Externals */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Externals;
+			sourceTree = "<group>";
+		};
+		F0A234E66E47C1437E38DB86 = {
+			isa = PBXGroup;
+			children = (
+				5DB7BCB4C4081AAE2E3142EC /* assets */,
+				EA6A3A4140A4ADF8140DED28 /* Assets.xcassets */,
+				E40162136B9D0FDE488C562D /* LaunchScreen.storyboard */,
+				FA8FE7AAFE37165495C0ED61 /* acctpass-app_iOS */,
+				DE5B4278DD2408365729F917 /* Externals */,
+				033733ACE8312A6F1496A460 /* Sources */,
+				1AC30E8DCCB3035DC126259A /* src */,
+				98BC4C097BAFF05B18EDC0A1 /* Frameworks */,
+				66A31B7DE290CAE21135FEF7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FA8FE7AAFE37165495C0ED61 /* acctpass-app_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0BE25B66400E90F87EF45134 /* acctpass-app_iOS.entitlements */,
+				467AD0533DA5012102C89A96 /* Info.plist */,
+			);
+			path = "acctpass-app_iOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F2CA39C5CB095AA7A2954D28 /* acctpass-app_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E01BA4E657AE8DE9213D4DFC /* Build configuration list for PBXNativeTarget "acctpass-app_iOS" */;
+			buildPhases = (
+				D7D2F2E7BF15F8082EDF2521 /* Build Rust Code */,
+				71BF017AF620B17538EED438 /* Sources */,
+				3372FD3CCD9E8F4DDB42BDC9 /* Resources */,
+				5E6CE6DBB731CA4AD8F38CD4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "acctpass-app_iOS";
+			packageProductDependencies = (
+			);
+			productName = "acctpass-app_iOS";
+			productReference = 7083A027A86D3304DD1B388F /* acctpass-app_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF310C210C49779654FAD274 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 5D56A23257CD2F9CB7B1BC5D /* Build configuration list for PBXProject "acctpass-app" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = F0A234E66E47C1437E38DB86;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 66A31B7DE290CAE21135FEF7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2CA39C5CB095AA7A2954D28 /* acctpass-app_iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3372FD3CCD9E8F4DDB42BDC9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273E58516C429FCA24FD49A6 /* Assets.xcassets in Resources */,
+				060A84C0E4F6614FCC4F8D41 /* LaunchScreen.storyboard in Resources */,
+				11D0CB6C3E32F6F9121F8104 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D7D2F2E7BF15F8082EDF2521 /* Build Rust Code */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Rust Code";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Externals/x86_64/${CONFIGURATION}/libapp.a",
+				"$(SRCROOT)/Externals/arm64/${CONFIGURATION}/libapp.a",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "npm run -- tauri ios xcode-script -v --platform ${PLATFORM_DISPLAY_NAME:?} --sdk-root ${SDKROOT:?} --framework-search-paths \"${FRAMEWORK_SEARCH_PATHS:?}\" --header-search-paths \"${HEADER_SEARCH_PATHS:?}\" --gcc-preprocessor-definitions \"${GCC_PREPROCESSOR_DEFINITIONS:-}\" --configuration ${CONFIGURATION:?} ${FORCE_COLOR} ${ARCHS:?}";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		71BF017AF620B17538EED438 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E20D4F9A5BD7DC7AEAB1C68 /* main.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		50423B2FD5895C16F4A32673 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = (
+					arm64,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "acctpass-app_iOS/acctpass-app_iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = x86_64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				INFOPLIST_FILE = "acctpass-app_iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=arm64]" = "$(inherited) $(PROJECT_DIR)/Externals/arm64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/$(PLATFORM_NAME) $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = "$(inherited) $(PROJECT_DIR)/Externals/x86_64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/$(PLATFORM_NAME) $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.falcn8.acctpass;
+				PRODUCT_NAME = "acctpass";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
+			};
+			name = debug;
+		};
+		816261B537177F0E89E438AD /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = (
+					arm64,
+				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "acctpass-app_iOS/acctpass-app_iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = x86_64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				INFOPLIST_FILE = "acctpass-app_iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=arm64]" = "$(inherited) $(PROJECT_DIR)/Externals/arm64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/$(PLATFORM_NAME) $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = "$(inherited) $(PROJECT_DIR)/Externals/x86_64/$(CONFIGURATION) $(SDKROOT)/usr/lib/swift $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/$(PLATFORM_NAME) $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-5.0/$(PLATFORM_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.falcn8.acctpass;
+				PRODUCT_NAME = "acctpass";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
+			};
+			name = release;
+		};
+		B67ACDE232194C7F1395BC1A /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = debug;
+		};
+		EC2E1C011F7AA9B6D5CEEAC9 /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5D56A23257CD2F9CB7B1BC5D /* Build configuration list for PBXProject "acctpass-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B67ACDE232194C7F1395BC1A /* debug */,
+				EC2E1C011F7AA9B6D5CEEAC9 /* release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = debug;
+		};
+		E01BA4E657AE8DE9213D4DFC /* Build configuration list for PBXNativeTarget "acctpass-app_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50423B2FD5895C16F4A32673 /* debug */,
+				816261B537177F0E89E438AD /* release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF310C210C49779654FAD274 /* Project object */;
+}

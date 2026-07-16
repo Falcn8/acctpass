@@ -1,0 +1,34 @@
+{
+  "name": "acctpass-app-ui",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri:dev": "cross-env CARGO_TARGET_DIR=target npm --prefix ../app run tauri -- dev --config ../app-v2/tauri.v2.conf.json",
+    "tauri:build": "cross-env CARGO_TARGET_DIR=target npm --prefix ../app run tauri -- build --config ../app-v2/tauri.v2.conf.json",
+    "tauri:android:build": "cross-env CARGO_TARGET_DIR=target npm --prefix ../app run tauri -- android build --config ../app-v2/tauri.v2.conf.json",
+    "tauri:ios:build": "cross-env CARGO_TARGET_DIR=target npm --prefix ../app run tauri -- ios build --config ../app-v2/tauri.v2.conf.json"
+  },
+  "dependencies": {
+    "@fontsource/dm-mono": "^5.2.6",
+    "@fontsource/manrope": "^5.2.6",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-clipboard-manager": "^2",
+    "@tauri-apps/plugin-dialog": "^2",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "cross-env": "^10.1.0",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4"
+  }
+}

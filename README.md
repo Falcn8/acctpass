@@ -44,6 +44,21 @@ cd acctpass
 make build
 ```
 
+## Native app
+
+The cross-platform app uses the release interface in [`app-v2/`](app-v2) and
+the shared Rust/Tauri backend in [`app/`](app). It brings the same offline vault
+and password derivation behavior to macOS, Windows, Linux, iOS, and Android.
+Existing CLI vaults can be imported without changing their seed or generated
+passwords.
+
+```sh
+cd app-v2
+npm ci
+npm --prefix ../app ci
+npm run tauri:dev
+```
+
 ## Usage
 
 ```sh
@@ -94,6 +109,10 @@ Pushing a `v*` tag builds GitHub Release archives for:
 
 Each release includes SHA-256 checksums so downloads can be verified.
 Release archives include the README, SECURITY policy, and MIT license.
+
+Pushing an `app-v*` tag builds native app installers for macOS, Windows, and
+Linux. The Android and iOS projects are included in the source tree; publishing
+them to an app store requires platform developer accounts and signing keys.
 
 ## Security disclaimer
 

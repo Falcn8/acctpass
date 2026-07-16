@@ -1,0 +1,102 @@
+name: App Release
+
+on:
+  push:
+    tags:
+      - "app-v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing app tag, for example app-v0.1.0"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+env:
+  APP_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+
+jobs:
+  publish:
+    name: Build app (${{ matrix.name }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: macOS Apple Silicon
+            platform: macos-latest
+            args: --target aarch64-apple-darwin
+            rust_targets: aarch64-apple-darwin
+          - name: macOS Intel
+            platform: macos-latest
+            args: --target x86_64-apple-darwin
+            rust_targets: x86_64-apple-darwin
+          - name: Linux x64
+            platform: ubuntu-22.04
+            args: ""
+            rust_targets: ""
+          - name: Windows x64
+            platform: windows-latest
+            args: ""
+            rust_targets: ""
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref }}
+
+      - name: Install Linux system dependencies
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            app/package-lock.json
+            app-v2/package-lock.json
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.rust_targets }}
+
+      - name: Cache Rust builds
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: app/src-tauri
+
+      - name: Install frontend dependencies
+        run: |
+          npm ci --prefix app
+          npm ci --prefix app-v2
+
+      - name: Test release frontend
+        run: npm run build --prefix app-v2
+
+      - name: Test shared backend
+        run: cargo test --manifest-path app/src-tauri/Cargo.toml
+
+      - name: Build and publish installers
+        uses: tauri-apps/tauri-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: app
+          args: --config ../app-v2/tauri.v2.conf.json ${{ matrix.args }}
+          tagName: ${{ env.APP_TAG }}
+          releaseName: acctpass ${{ env.APP_TAG }}
+          releaseBody: |
+            First public beta of the native acctpass app.
+
+            Password generation and vault storage remain local to the device. These desktop builds are not yet signed with commercial platform certificates, so the operating system may show an unverified-developer warning.
+          releaseDraft: false
+          prerelease: true
+          retryAttempts: 2
