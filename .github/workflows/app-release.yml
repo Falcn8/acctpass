@@ -24,14 +24,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: macOS Apple Silicon
+          - name: macOS Universal
             platform: macos-latest
-            args: --target aarch64-apple-darwin
-            rust_targets: aarch64-apple-darwin
-          - name: macOS Intel
-            platform: macos-latest
-            args: --target x86_64-apple-darwin
-            rust_targets: x86_64-apple-darwin
+            args: --target universal-apple-darwin
+            rust_targets: aarch64-apple-darwin,x86_64-apple-darwin
           - name: Linux x64
             platform: ubuntu-22.04
             args: ""
@@ -97,6 +93,8 @@ jobs:
             First public beta of the native acctpass app.
 
             Password generation and vault storage remain local to the device. These desktop builds are not yet signed with commercial platform certificates, so the operating system may show an unverified-developer warning.
+
+            macOS users should download the `universal.dmg`. It runs natively on both Apple Silicon and Intel Macs.
           releaseDraft: false
           prerelease: true
           retryAttempts: 2
