@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Download acctpass, an offline desktop app that regenerates account passwords without storing the generated passwords.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://acctpass.hexagon.one/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="acctpass">
+  <meta property="og:url" content="https://acctpass.hexagon.one/">
+  <meta property="og:title" content="acctpass — Passwords, without the vault">
+  <meta property="og:description" content="Generate account passwords locally on macOS, Windows, and Linux.">
+  <meta property="og:image" content="https://acctpass.hexagon.one/assets/acctpass-app.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="acctpass — Passwords, without the vault">
+  <meta name="twitter:description" content="Generate account passwords locally on macOS, Windows, and Linux.">
+  <meta name="twitter:image" content="https://acctpass.hexagon.one/assets/acctpass-app.webp">
+  <title>acctpass — Download the desktop app</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "acctpass",
+    "url": "https://acctpass.hexagon.one/",
+    "description": "An offline desktop app that regenerates account passwords without storing the generated passwords.",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "macOS, Windows, Linux",
+    "softwareVersion": "0.1.0",
+    "offers": {
+      "@type": "Offer",
+      "price": 0,
+      "priceCurrency": "USD"
+    },
+    "downloadUrl": "https://github.com/Falcn8/acctpass/releases/tag/app-v0.1.0",
+    "license": "https://github.com/Falcn8/acctpass/blob/main/LICENSE",
+    "codeRepository": "https://github.com/Falcn8/acctpass",
+    "isAccessibleForFree": true,
+    "image": "https://acctpass.hexagon.one/assets/acctpass-app.webp",
+    "screenshot": "https://acctpass.hexagon.one/assets/acctpass-app.webp"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="nav-pill" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="acctpass home">
+      <span class="brandmark" aria-hidden="true"><i></i><b></b></span>
+      <span>acctpass</span>
+    </a>
+    <div class="nav-pill__links">
+      <a href="#app">App</a>
+      <a href="#security">Security</a>
+    </div>
+    <a class="button button--compact button--dark" href="#download">Download <span aria-hidden="true">↓</span></a>
+  </nav>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <p class="hero__edition">Public beta · v0.1.0</p>
+      <h1>Passwords,<br>without the vault.</h1>
+      <div class="hero__foot">
+        <p>One encrypted local seed. One account recipe. The password appears only when you ask for it.</p>
+        <p class="hero__platforms">macOS · Windows · Linux</p>
+      </div>
+    </section>
+
+    <section class="app-proof section" id="app">
+      <header class="section-head section-head--app">
+        <div>
+          <h2>The desktop app is here.</h2>
+          <p>Generate, copy, and clear account passwords without sending your master password through a browser or cloud service.</p>
+        </div>
+        <div class="section-head__actions">
+          <a class="button button--dark" href="#download">Choose a download <span aria-hidden="true">↓</span></a>
+          <a class="text-link" href="https://github.com/Falcn8/acctpass" target="_blank" rel="noreferrer">Read the source <span aria-hidden="true">↗</span></a>
+        </div>
+      </header>
+
+      <figure class="product-capture">
+        <img src="assets/acctpass-app.webp" width="980" height="700" alt="acctpass desktop app showing the local password generator" fetchpriority="high">
+        <figcaption>
+          <span><b>Recipe</b> Service, account, version, and policy</span>
+          <span><b>Local</b> Master password stays on this device</span>
+          <span><b>Temporary</b> Copied value clears after 45 seconds</span>
+        </figcaption>
+      </figure>
+
+      <div class="proof-rail" aria-label="Key acctpass properties">
+        <p><span aria-hidden="true"></span><b>No account</b><small>Works offline</small></p>
+        <p><span aria-hidden="true"></span><b>No saved passwords</b><small>Generated in memory</small></p>
+        <p><span aria-hidden="true"></span><b>One compatible core</b><small>CLI vectors checked</small></p>
+      </div>
+    </section>
+
+    <section class="download section" id="download">
+      <div class="download__intro">
+        <h2>Choose your build.</h2>
+        <p>The first public beta is available for macOS, Windows, and x64 Linux. Packages are not commercially signed or notarized yet.</p>
+        <a class="text-link" href="https://github.com/Falcn8/acctpass/releases/tag/app-v0.1.0" target="_blank" rel="noreferrer">Release notes <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <div class="download__picker">
+        <div class="platform-tabs" role="tablist" aria-label="Choose a desktop platform">
+          <button type="button" role="tab" aria-selected="true" aria-controls="platform-panel" data-platform="mac">macOS</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="platform-panel" data-platform="windows" tabindex="-1">Windows</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="platform-panel" data-platform="linux" tabindex="-1">Linux</button>
+        </div>
+
+        <div class="platform-panel" id="platform-panel" role="tabpanel" aria-live="polite">
+          <p class="platform-panel__title" data-platform-title>macOS downloads</p>
+          <div class="download-links" data-download-links>
+            <a class="button button--dark" href="https://github.com/Falcn8/acctpass/releases/download/app-v0.1.0/acctpass_0.1.0_aarch64.dmg" download>Apple Silicon DMG <span aria-hidden="true">↓</span></a>
+            <a class="button button--outline" href="https://github.com/Falcn8/acctpass/releases/download/app-v0.1.0/acctpass_0.1.0_x64.dmg" download>Intel Mac DMG <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="platform-panel__note" data-platform-note>For M1 and newer Macs, choose Apple Silicon.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="security section" id="security">
+      <header class="section-head section-head--security">
+        <div>
+          <h2>Security, stated plainly.</h2>
+          <p>acctpass names the primitives it uses and the limitation that matters: the project has not been independently audited.</p>
+        </div>
+      </header>
+
+      <table class="spec-sheet">
+        <tbody>
+          <tr><th scope="row">Vault key derivation</th><td>Argon2id</td><td>64 MiB · time cost 3 · 1 thread</td></tr>
+          <tr><th scope="row">Seed encryption</th><td>XChaCha20-Poly1305</td><td>Authenticated encryption · random nonce</td></tr>
+          <tr><th scope="row">Password derivation</th><td>HMAC-SHA256</td><td>Versioned context · rejection sampling</td></tr>
+          <tr><th scope="row">Network use</th><td>None required</td><td>Generation runs locally</td></tr>
+        </tbody>
+      </table>
+
+      <aside class="audit-note">
+        <p><span aria-hidden="true"></span><strong>Independent audit pending.</strong> For critical or regulated accounts, use an audited password manager.</p>
+        <a class="text-link" href="https://github.com/Falcn8/acctpass/blob/main/SECURITY.md" target="_blank" rel="noreferrer">Security policy <span aria-hidden="true">↗</span></a>
+      </aside>
+    </section>
+
+    <section class="source-note section">
+      <p>Open source, MIT licensed, and built to be inspected.</p>
+      <a class="button button--outline" href="https://github.com/Falcn8/acctpass" target="_blank" rel="noreferrer">View acctpass on GitHub <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand" href="#top"><span class="brandmark" aria-hidden="true"><i></i><b></b></span><span>acctpass</span></a>
+    <p>© 2026 acctpass contributors · MIT licensed · No tracking</p>
+    <div><a href="https://github.com/Falcn8/acctpass" target="_blank" rel="noreferrer">GitHub</a><a href="https://github.com/Falcn8/acctpass/blob/main/LICENSE" target="_blank" rel="noreferrer">License</a></div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+:root {
+  color-scheme: light;
+
+  --color-page: oklch(95.5% 0.012 292);
+  --color-paper: oklch(99% 0.004 292);
+  --color-paper-2: oklch(97% 0.009 292);
+  --color-paper-3: oklch(93.5% 0.018 292);
+  --color-cream: oklch(95% 0.027 80);
+  --color-ink: oklch(18% 0.012 292);
+  --color-ink-2: oklch(29% 0.012 292);
+  --color-muted: oklch(43% 0.014 292);
+  --color-rule: oklch(86% 0.014 292);
+  --color-rule-strong: oklch(68% 0.018 292);
+  --color-accent: oklch(88% 0.074 292);
+  --color-accent-soft: oklch(95% 0.025 292);
+  --color-accent-strong: oklch(55% 0.18 292);
+  --color-accent-ink: oklch(20% 0.012 292);
+  --color-focus: oklch(49% 0.2 292);
+  --color-success: oklch(48% 0.12 155);
+  --color-success-soft: oklch(94% 0.035 155);
+  --color-warning: oklch(59% 0.13 65);
+  --color-error: oklch(51% 0.18 25);
+  --color-surface-dark: oklch(22% 0.012 292);
+  --color-surface-dark-2: oklch(29% 0.014 292);
+  --color-on-dark: oklch(96% 0.006 292);
+  --color-on-dark-muted: oklch(78% 0.012 292);
+  --color-overlay: oklch(15% 0.01 292 / 0.12);
+
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 9rem;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.5625rem;
+  --text-xl: 1.953rem;
+  --text-2xl: 2.441rem;
+  --text-3xl: 3.052rem;
+  --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-display-small: clamp(2.5rem, 4vw + 0.75rem, 4.25rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+
+  --rule-hair: 1px;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 999px;
+
+  --shadow-whisper: 0 1px 2px var(--color-overlay);
+  --shadow-float: 0 1.5rem 4rem var(--color-overlay);
+  --page-max: 86rem;
+  --page-gutter: clamp(1rem, 4vw, 4.5rem);
+
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+}
