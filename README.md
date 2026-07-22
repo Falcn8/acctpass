@@ -26,6 +26,8 @@ same strong password every time
 
 ![acctpass terminal demo](assets/demo.gif)
 
+[Watch the 24-second app overview (1920 × 1080 MP4)](assets/acctpass-pr-video.mp4)
+
 `acctpass` stores one encrypted local vault seed, then regenerates account
 passwords from your master password plus the platform, email, counter, length,
 and symbol setting you provide. The generated account passwords are not saved.
